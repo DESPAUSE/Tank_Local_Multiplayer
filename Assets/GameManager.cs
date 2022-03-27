@@ -22,15 +22,16 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    public GameData_SO gameData;
+    public HUD hud;
+
     public GameObject player1;
     public GameObject player2;
-    Vector3 p1pos;
-    Vector3 p2pos;
 
     public void Start()
     {
-        p1pos = player1.transform.position;
-        p2pos = player2.transform.position;
+        hud.UpdateScore(player1.GetComponent<Player>().data.score, player2.GetComponent<Player>().data.score);
+        gameData.OnUpdateHUD.AddListener(UpdateHUD);
     }
     public void Update()
     {
@@ -40,9 +41,12 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
-        player1.GetComponent<Player>().enabled = true;
-        player2.GetComponent<Player>().enabled = true;
-        player1.transform.position = new Vector3(p1pos.x, p1pos.y, p1pos.z);
-        player2.transform.position = new Vector3(p2pos.x, p2pos.y, p2pos.z);
+        player1.GetComponent<Player>().Reset();
+        player2.GetComponent<Player>().Reset();
+    }
+
+    public void UpdateHUD()
+    {
+        hud.UpdateScore(player1.GetComponent<Player>().data.score, player2.GetComponent<Player>().data.score);
     }
 }

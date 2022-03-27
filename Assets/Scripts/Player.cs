@@ -10,6 +10,8 @@ public enum EnumPlayer
 
 public class Player : MonoBehaviour
 {
+    public GameData_SO gameData;
+    public PlayerData_SO data;
     public EnumPlayer numPlayer;
 
     public float force = 10;
@@ -20,27 +22,48 @@ public class Player : MonoBehaviour
     float hor;
     float ver;
 
-    public GameObject fumaca;
+    Vector3 startPos;
+    Quaternion startRotation;
+
+    public GameObject fumaca, fumacaOld;
     public GameObject Shot;
     public GameObject ponta;
+
+    public bool damaged;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        startPos = transform.position;
+        startRotation = transform.rotation;
     }
 
     private void Update()
     {
-        hor = Input.GetAxis("Horizontal" + (int)numPlayer);
-        ver = Input.GetAxis("Vertical" + (int)numPlayer);
+        if (!damaged)
+        {
+            hor = Input.GetAxis("Horizontal" + (int)numPlayer);
+            ver = Input.GetAxis("Vertical" + (int)numPlayer);
 
-        if (Input.GetButtonDown("Fire"+(int)numPlayer))
-            Fire();
+            if (Input.GetButtonDown("Fire" + (int)numPlayer))
+                Fire();
+        }
     }
 
     private void FixedUpdate()
     {
-        Movement();
+        if (!damaged)
+        {
+            Movement();
+        }
+    }
+
+    public void Reset()
+    {
+        damaged = false;
+        Destroy(fumacaOld);
+        transform.rotation = startRotation;
+        transform.position = startPos;
     }
 
     public void Morri()
@@ -48,8 +71,8 @@ public class Player : MonoBehaviour
         if (this.enabled == true)
         {
             //Instancia fumaça no modelo e não no centro do objeto que nao entendi onde está
-            Instantiate(fumaca, this.gameObject.GetComponentInChildren<LODGroup>().transform);
-            this.enabled = false;
+            fumacaOld = Instantiate(fumaca, this.gameObject.GetComponentInChildren<LODGroup>().transform);
+            damaged = true;
         }
     }
 
@@ -65,6 +88,13 @@ public class Player : MonoBehaviour
     void Fire()
     {
         var instance = Instantiate(Shot, ponta.transform);
+        instance.GetComponent<Shot>().player = this;
         instance.GetComponent<Rigidbody>().AddForce(ponta.transform.forward * 6000);
+    }
+
+    public void AddPoints(int value)
+    {
+        data.score += value;
+        gameData.OnUpdateHUD.Invoke();
     }
 }
