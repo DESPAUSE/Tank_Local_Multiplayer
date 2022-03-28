@@ -51,16 +51,4 @@ public class GameManager : MonoBehaviour
     {
         hud.UpdateScore(player1.data.score, player2.data.score);
     }
-
-    public void DeathSequence(int playerNum)
-    {
-        if(playerNum == ((int)player2.numPlayer))
-        {
-            player2.GetComponent<Player>().Reset();
-        }
-        else
-        {
-            player1.GetComponent<Player>().Reset();
-        }
-    }
 }
