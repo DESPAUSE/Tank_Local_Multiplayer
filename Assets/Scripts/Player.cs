@@ -29,9 +29,9 @@ public class Player : MonoBehaviour
     public GameObject Shot;
     public GameObject ponta;
 
-    AudioSource tankMoving;
-
-    public bool damaged;
+    public bool damaged,
+        isMoving,
+        isPlaying;
 
     private void Awake()
     {
@@ -43,28 +43,28 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         startPos = transform.position;
         startRotation = transform.rotation;
-
-        tankMoving = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
         if (!damaged)
         {
+            if(Input.GetButtonDown("Horizontal" + (int)numPlayer) || Input.GetButtonDown("Vertical" + (int)numPlayer))
+            {
+                isMoving = true;
+            }
+            else if (Input.GetButtonUp("Horizontal" + (int)numPlayer) || Input.GetButtonUp("Vertical" + (int)numPlayer))
+            {
+                isMoving = false;
+                isPlaying = false;
+                FindObjectOfType<AudioManager>().Stop("TankMoving");
+            }
+
             hor = Input.GetAxis("Horizontal" + (int)numPlayer);
             ver = Input.GetAxis("Vertical" + (int)numPlayer);
-
+            
             if (Input.GetButtonDown("Fire" + (int)numPlayer))
                 Fire();
-
-            if (!tankMoving.isPlaying)
-            {
-                tankMoving.Play();
-            }
-            else 
-            { 
-                tankMoving.Stop();
-            }
         }
     }
 
@@ -106,10 +106,10 @@ public class Player : MonoBehaviour
 
         float angle = transform.rotation.eulerAngles.y;
         rb.MoveRotation(Quaternion.Euler(0, angle + (hor * torque), 0));
-
-        if (!tankMoving.isPlaying)
+        if (isMoving && !isPlaying)
         {
-            tankMoving.Play();
+            isPlaying = true;
+            FindObjectOfType<AudioManager>().Play("TankMoving");
         }
 
     }
