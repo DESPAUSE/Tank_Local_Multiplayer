@@ -88,6 +88,7 @@ public class Player : MonoBehaviour
         Destroy(fumacaOld);
         transform.rotation = startRotation;
         transform.position = startPos;
+        FindObjectOfType<AudioManager>().Stop("Fire" + (int)numPlayer);
         FindObjectOfType<AudioManager>().Play("Shutup");
     }
 
@@ -100,6 +101,9 @@ public class Player : MonoBehaviour
             damaged = true;
             GameManager.GM.hud.DeathCountdown(((int)numPlayer));
 
+            FindObjectOfType<AudioManager>().Stop("TankIdle" + (int)numPlayer);
+            FindObjectOfType<AudioManager>().Stop("TankMoving" + (int)numPlayer);
+            FindObjectOfType<AudioManager>().Play("Fire" + (int)numPlayer);
             FindObjectOfType<AudioManager>().Play("Shutdown");
         }
     }

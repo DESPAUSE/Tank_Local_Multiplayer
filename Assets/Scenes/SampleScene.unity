@@ -3063,6 +3063,16 @@ MonoBehaviour:
     volume: 0.122
     pitch: 1.291
     source: {fileID: 0}
+  - name: Fire1
+    clip: {fileID: 8300000, guid: 2b8b005f169a32544b13576d22a0f50a, type: 3}
+    volume: 0.122
+    pitch: 1.291
+    source: {fileID: 0}
+  - name: Fire2
+    clip: {fileID: 8300000, guid: 2b8b005f169a32544b13576d22a0f50a, type: 3}
+    volume: 0.122
+    pitch: 1.291
+    source: {fileID: 0}
 --- !u!4 &1360757745
 Transform:
   m_ObjectHideFlags: 0
