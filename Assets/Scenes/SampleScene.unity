@@ -3053,6 +3053,16 @@ MonoBehaviour:
     volume: 0.122
     pitch: 1.291
     source: {fileID: 0}
+  - name: TankIdle1
+    clip: {fileID: 8300000, guid: bc8cc0b0141edc64c87d33e66d9dfcf3, type: 3}
+    volume: 0.122
+    pitch: 1.291
+    source: {fileID: 0}
+  - name: TankIdle2
+    clip: {fileID: 8300000, guid: bc8cc0b0141edc64c87d33e66d9dfcf3, type: 3}
+    volume: 0.122
+    pitch: 1.291
+    source: {fileID: 0}
 --- !u!4 &1360757745
 Transform:
   m_ObjectHideFlags: 0

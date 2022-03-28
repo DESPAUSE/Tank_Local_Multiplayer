@@ -51,7 +51,12 @@ public class Player : MonoBehaviour
         {
             if(Input.GetButton("Horizontal" + (int)numPlayer) || Input.GetButton("Vertical" + (int)numPlayer))
             {
-                isMoving = true;
+                FindObjectOfType<AudioManager>().Stop("TankIdle" + (int)numPlayer);
+                if(!isMoving && isPlaying)
+                {
+                    isPlaying = false;
+                    isMoving = true;
+                }
             }
             else if (Input.GetButtonUp("Horizontal" + (int)numPlayer) || Input.GetButtonUp("Vertical" + (int)numPlayer))
             {
@@ -110,6 +115,11 @@ public class Player : MonoBehaviour
         {
             isPlaying = true;
             FindObjectOfType<AudioManager>().Play("TankMoving" + (int)numPlayer);
+        }
+        else if (!isMoving && !isPlaying)
+        {
+            isPlaying = true;
+            FindObjectOfType<AudioManager>().Play("TankIdle" + (int)numPlayer);
         }
 
     }
