@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
+        FindObjectOfType<AudioManager>().Play("Ambience");
+
         hud.UpdateScore(player1.data.score, player2.data.score);
         gameData.OnUpdateHUD.AddListener(UpdateHUD);
     }

@@ -92,6 +92,7 @@ public class Player : MonoBehaviour
         var instance = Instantiate(Shot, ponta.transform);
         instance.GetComponent<Shot>().player = this;
         instance.GetComponent<Rigidbody>().AddForce(ponta.transform.forward * 6000);
+        FindObjectOfType<AudioManager>().Play("TankFire" + (int)numPlayer);
     }
 
     public void AddPoints(int value)
