@@ -29,13 +29,22 @@ public class Player : MonoBehaviour
     public GameObject Shot;
     public GameObject ponta;
 
+    AudioSource tankMoving;
+
     public bool damaged;
+
+    private void Awake()
+    {
+        FindObjectOfType<AudioManager>().Play("Shutup");
+    }
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         startPos = transform.position;
         startRotation = transform.rotation;
+
+        tankMoving = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -47,6 +56,15 @@ public class Player : MonoBehaviour
 
             if (Input.GetButtonDown("Fire" + (int)numPlayer))
                 Fire();
+
+            if (!tankMoving.isPlaying)
+            {
+                tankMoving.Play();
+            }
+            else 
+            { 
+                tankMoving.Stop();
+            }
         }
     }
 
@@ -65,6 +83,7 @@ public class Player : MonoBehaviour
         Destroy(fumacaOld);
         transform.rotation = startRotation;
         transform.position = startPos;
+        FindObjectOfType<AudioManager>().Play("Shutup");
     }
 
     public void Morri()
@@ -75,6 +94,8 @@ public class Player : MonoBehaviour
             fumacaOld = Instantiate(fumaca, this.gameObject.GetComponentInChildren<LODGroup>().transform);
             damaged = true;
             GameManager.GM.hud.DeathCountdown(((int)numPlayer));
+
+            FindObjectOfType<AudioManager>().Play("Shutdown");
         }
     }
 
@@ -85,6 +106,12 @@ public class Player : MonoBehaviour
 
         float angle = transform.rotation.eulerAngles.y;
         rb.MoveRotation(Quaternion.Euler(0, angle + (hor * torque), 0));
+
+        if (!tankMoving.isPlaying)
+        {
+            tankMoving.Play();
+        }
+
     }
 
     void Fire()
