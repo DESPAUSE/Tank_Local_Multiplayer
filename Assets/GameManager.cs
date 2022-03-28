@@ -25,12 +25,12 @@ public class GameManager : MonoBehaviour
     public GameData_SO gameData;
     public HUD hud;
 
-    public GameObject player1;
-    public GameObject player2;
+    public Player player1;
+    public Player player2;
 
     public void Start()
     {
-        hud.UpdateScore(player1.GetComponent<Player>().data.score, player2.GetComponent<Player>().data.score);
+        hud.UpdateScore(player1.data.score, player2.data.score);
         gameData.OnUpdateHUD.AddListener(UpdateHUD);
     }
     public void Update()
@@ -41,12 +41,24 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
-        player1.GetComponent<Player>().Reset();
-        player2.GetComponent<Player>().Reset();
+        player1.Reset();
+        player2.Reset();
     }
 
     public void UpdateHUD()
     {
-        hud.UpdateScore(player1.GetComponent<Player>().data.score, player2.GetComponent<Player>().data.score);
+        hud.UpdateScore(player1.data.score, player2.data.score);
+    }
+
+    public void DeathSequence(int playerNum)
+    {
+        if(playerNum == ((int)player2.numPlayer))
+        {
+            player2.GetComponent<Player>().Reset();
+        }
+        else
+        {
+            player1.GetComponent<Player>().Reset();
+        }
     }
 }

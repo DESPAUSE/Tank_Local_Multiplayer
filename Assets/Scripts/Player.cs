@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         if (!damaged)
         {
             Movement();
@@ -73,6 +74,7 @@ public class Player : MonoBehaviour
             //Instancia fumaça no modelo e não no centro do objeto que nao entendi onde está
             fumacaOld = Instantiate(fumaca, this.gameObject.GetComponentInChildren<LODGroup>().transform);
             damaged = true;
+            GameManager.GM.DeathSequence(((int)numPlayer));
         }
     }
 

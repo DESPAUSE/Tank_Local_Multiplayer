@@ -12,4 +12,6 @@ public class HUD : MonoBehaviour
         txtP1points.text = p1.ToString();
         txtP2points.text = p2.ToString();
     }
+
+    
 }
