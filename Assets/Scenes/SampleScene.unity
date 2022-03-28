@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3043,7 +3043,12 @@ MonoBehaviour:
     volume: 0.361
     pitch: 1.291
     source: {fileID: 0}
-  - name: TankMoving
+  - name: TankMoving1
+    clip: {fileID: 8300000, guid: 148980563055ac24391e34fa544edadc, type: 3}
+    volume: 0.122
+    pitch: 1.291
+    source: {fileID: 0}
+  - name: TankMoving2
     clip: {fileID: 8300000, guid: 148980563055ac24391e34fa544edadc, type: 3}
     volume: 0.122
     pitch: 1.291
@@ -3287,7 +3292,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 148980563055ac24391e34fa544edadc, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.522
   m_Pitch: 1
   Loop: 0
@@ -3904,6 +3909,10 @@ PrefabInstance:
     - target: {fileID: 1560703623540105616, guid: aa43aaeb044561a448ec515d9ed74672, type: 3}
       propertyPath: m_Name
       value: Player2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560703623540105616, guid: aa43aaeb044561a448ec515d9ed74672, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1560703623540105616, guid: aa43aaeb044561a448ec515d9ed74672, type: 3}
       propertyPath: m_TagString

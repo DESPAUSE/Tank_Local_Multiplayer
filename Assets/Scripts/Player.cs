@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     {
         if (!damaged)
         {
-            if(Input.GetButtonDown("Horizontal" + (int)numPlayer) || Input.GetButtonDown("Vertical" + (int)numPlayer))
+            if(Input.GetButton("Horizontal" + (int)numPlayer) || Input.GetButton("Vertical" + (int)numPlayer))
             {
                 isMoving = true;
             }
@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
             {
                 isMoving = false;
                 isPlaying = false;
-                FindObjectOfType<AudioManager>().Stop("TankMoving");
+                FindObjectOfType<AudioManager>().Stop("TankMoving" + (int)numPlayer);
             }
 
             hor = Input.GetAxis("Horizontal" + (int)numPlayer);
@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
         if (isMoving && !isPlaying)
         {
             isPlaying = true;
-            FindObjectOfType<AudioManager>().Play("TankMoving");
+            FindObjectOfType<AudioManager>().Play("TankMoving" + (int)numPlayer);
         }
 
     }
