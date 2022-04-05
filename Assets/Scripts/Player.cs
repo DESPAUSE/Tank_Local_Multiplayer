@@ -34,7 +34,8 @@ public class Player : MonoBehaviour, IPunObservable
     public GameObject Shot;
     public GameObject ponta;
 
-        public GameObject myCam;
+        public GameObject myCam,
+            mainCam;
 
     public bool damaged,
         isMoving,
@@ -51,21 +52,23 @@ public class Player : MonoBehaviour, IPunObservable
         startPos = transform.position;
         startRotation = transform.rotation;
         view = GetComponent<PhotonView>();
-            
-        if (view.IsMine)
-        {
-                myCam.SetActive(true);
-                {
-                    Destroy(Camera.main);
-                }
-        }
+           
     }
 
     private void Update()
     {
-        
+            if (view.IsMine)
+            {
+                myCam.SetActive(true);
+                Destroy(Camera.main);
+            }
+            else
+            {
+                myCam.SetActive(false);
 
-        if (!damaged)
+            }
+
+            if (!damaged)
         {
             if(Input.GetButton("Horizontal" + (int)numPlayer) || Input.GetButton("Vertical" + (int)numPlayer))
             {
@@ -148,7 +151,7 @@ public class Player : MonoBehaviour, IPunObservable
 
     void Fire()
     {
-        var instance = Instantiate(Shot, ponta.transform);
+            var instance = PhotonNetwork.Instantiate("Tiro", ponta.transform.position, ponta.transform.rotation);
         instance.GetComponent<Shot>().player = this;
         instance.GetComponent<Rigidbody>().AddForce(ponta.transform.forward * 6000);
         FindObjectOfType<AudioManager>().Play("TankFire" + (int)numPlayer);

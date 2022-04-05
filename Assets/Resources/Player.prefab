@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 3988289695245264386}
   - component: {fileID: 114631703065809607}
   - component: {fileID: 186747494488714168}
+  - component: {fileID: 9091987244482105405}
+  - component: {fileID: 5641267424026284984}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -131,6 +133,7 @@ MonoBehaviour:
   Shot: {fileID: 6432318271186814199, guid: f09cd86f5f13e474882f8fa60e4ca86e, type: 3}
   ponta: {fileID: 7140159806600145358}
   myCam: {fileID: 8140606187030369474}
+  mainCam: {fileID: 0}
   damaged: 0
   isMoving: 0
   isPlaying: 0
@@ -154,9 +157,43 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 114631703065809607}
+  - {fileID: 9091987244482105405}
+  - {fileID: 5641267424026284984}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &9091987244482105405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518070699425306130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 1
+  m_TeleportIfDistanceGreaterThan: 3
+--- !u!114 &5641267424026284984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518070699425306130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &8140606187030369474
 GameObject:
   m_ObjectHideFlags: 0
