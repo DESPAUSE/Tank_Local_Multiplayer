@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
+namespace PlayerUnity
+{
 public enum EnumPlayer
 {
     Player1 = 1,
     Player2 = 2
 }
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IPunObservable
 {
     public GameData_SO gameData;
     public PlayerData_SO data;
     public EnumPlayer numPlayer;
+    PhotonView view;
 
     public float force = 10;
     public float torque = 10;
@@ -29,6 +34,8 @@ public class Player : MonoBehaviour
     public GameObject Shot;
     public GameObject ponta;
 
+        public GameObject myCam;
+
     public bool damaged,
         isMoving,
         isPlaying;
@@ -43,10 +50,21 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         startPos = transform.position;
         startRotation = transform.rotation;
+        view = GetComponent<PhotonView>();
+            
+        if (view.IsMine)
+        {
+                myCam.SetActive(true);
+                {
+                    Destroy(Camera.main);
+                }
+        }
     }
 
     private void Update()
     {
+        
+
         if (!damaged)
         {
             if(Input.GetButton("Horizontal" + (int)numPlayer) || Input.GetButton("Vertical" + (int)numPlayer))
@@ -140,5 +158,18 @@ public class Player : MonoBehaviour
     {
         data.score += value;
         gameData.OnUpdateHUD.Invoke();
+    }
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        {
+            /*if (stream.IsWriting)
+            {
+                stream.SendNext(render.flipX);
+            }
+            else
+            {
+                render.flipX = (bool)stream.ReceiveNext();
+            }*/
+            
+        }
     }
 }

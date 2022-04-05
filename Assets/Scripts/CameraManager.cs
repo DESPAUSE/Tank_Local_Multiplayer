@@ -18,7 +18,7 @@ public class CameraManager : MonoBehaviour
         cam = Cameras.cameraHor;
         cameraP1 = p1.GetComponentInChildren<Camera>();
         cameraP2 = p2.GetComponentInChildren<Camera>();
-
+        SinglePlayer();
     }
 
     public void Update()
