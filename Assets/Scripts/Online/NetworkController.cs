@@ -9,7 +9,12 @@ using TMPro;
 
 public class NetworkController : MonoBehaviourPunCallbacks
 {
-    public GameObject player;
+    public GameData_SO gameData;
+    public GameObject player,
+        player2;
+
+    public bool p1On, 
+        p2On;
 
     [Header("LOGIN")]
     public GameObject pnLogin;
@@ -26,6 +31,8 @@ public class NetworkController : MonoBehaviourPunCallbacks
     {
         pnLobby.SetActive(false);
         pnLogin.SetActive(true);
+        p1On = false;
+        p2On = false;
 
         if (PlayerPrefs.HasKey("user"))
         {
@@ -101,7 +108,19 @@ public class NetworkController : MonoBehaviourPunCallbacks
             print("PlayerList: " + nick.NickName);
         }
 
-        PhotonNetwork.Instantiate(player.name, Vector2.zero, Quaternion.identity);
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
+        {
+            PhotonNetwork.Instantiate(player2.name, Vector2.zero, Quaternion.identity);
+            gameData.OnPlayerEnter.Invoke();
+            p1On = true;
+        }
+        else if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        {
+            PhotonNetwork.Instantiate(player.name, Vector2.zero, Quaternion.identity);
+            gameData.OnPlayerEnter.Invoke();
+            p2On = true;
+        }
+        gameData.OnPlayerEnter.Invoke();
     }
 
     public void CreateRoom()

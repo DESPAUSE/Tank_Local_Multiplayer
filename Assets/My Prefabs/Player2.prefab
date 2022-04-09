@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: cPlayer
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -185,9 +185,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.5
+    x: 0
     y: 0
-    width: 0.5
+    width: 1
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -768,6 +768,9 @@ GameObject:
   - component: {fileID: 1730675992}
   - component: {fileID: 1730675996}
   - component: {fileID: 7662740666440177599}
+  - component: {fileID: 4577301518396127348}
+  - component: {fileID: 1624181299026045500}
+  - component: {fileID: 5974195509065302488}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player
@@ -883,9 +886,68 @@ MonoBehaviour:
   fumacaOld: {fileID: 0}
   Shot: {fileID: 6432318271186814199, guid: f09cd86f5f13e474882f8fa60e4ca86e, type: 3}
   ponta: {fileID: 7165879359223360956}
+  myCam: {fileID: 0}
+  mainCam: {fileID: 0}
   damaged: 0
   isMoving: 0
   isPlaying: 0
+--- !u!114 &4577301518396127348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560703623540105616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 7662740666440177599}
+  - {fileID: 1624181299026045500}
+  - {fileID: 5974195509065302488}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &1624181299026045500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560703623540105616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 1
+  m_TeleportIfDistanceGreaterThan: 3
+--- !u!114 &5974195509065302488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560703623540105616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1001 &724615476413302593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -975,13 +1037,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d7c296ccf6a94b418871d4d6633f895, type: 3}
---- !u!4 &729574678583912141 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4962790758457740, guid: 2d7c296ccf6a94b418871d4d6633f895, type: 3}
-  m_PrefabInstance: {fileID: 724615476413302593}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7165879359223360956 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7600959755650231037, guid: 2d7c296ccf6a94b418871d4d6633f895, type: 3}
+  m_PrefabInstance: {fileID: 724615476413302593}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &729574678583912141 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4962790758457740, guid: 2d7c296ccf6a94b418871d4d6633f895, type: 3}
   m_PrefabInstance: {fileID: 724615476413302593}
   m_PrefabAsset: {fileID: 0}

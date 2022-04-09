@@ -7,4 +7,5 @@ using UnityEngine.Events;
 public class GameData_SO : ScriptableObject
 {
     public UnityEvent OnUpdateHUD;
+    public UnityEvent OnPlayerEnter;
 }

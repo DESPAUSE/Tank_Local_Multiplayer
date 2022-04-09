@@ -6,18 +6,15 @@ using UnityEngine.UIElements;
 
 public class HUD : MonoBehaviour
 {
-
+    public GameObject panel;
     public TMP_Text txtP1points,
         txtP2points;
-    public TMP_Text txtP1Count, 
-        txtP2Count;
-    public Timer deathP1,
-        deathP2;
+    public TMP_Text txtCount;
+    public Timer death;
 
     private void Update()
     {
-        txtP1Count.text = deathP1.stgTimer;
-        txtP2Count.text = deathP2.stgTimer;
+        txtCount.text = death.stgTimer;
     }
 
     public void UpdateScore(int p1, int p2)
@@ -28,14 +25,16 @@ public class HUD : MonoBehaviour
 
     public void DeathCountdown(int playerNum)
     {
-        if(playerNum == 1)
+        if (playerNum == 1)
         {
-            deathP1.gameObject.SetActive(true);
+            death.player = playerNum;
+            death.gameObject.SetActive(true);
         }
-        else
+        if(playerNum == 2)
         {
-            deathP2.gameObject.SetActive(true);
+            death.player = playerNum;
+            death.gameObject.SetActive(true);
         }
-    }
 
+    }
 }

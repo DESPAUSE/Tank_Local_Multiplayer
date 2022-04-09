@@ -4,20 +4,18 @@ using UnityEngine;
 using PlayerUnity;
 public class Timer : MonoBehaviour
 {
-    Player player;
+    public int player;
     float time;
     public string stgTimer;
 
     private void Start()
     {
         time = 3;
-        player = GetComponentInParent<Player>();
     }
 
     private void Reset()
     {
         this.gameObject.SetActive(false);
-        player.Reset();
         time = 3;
         stgTimer = string.Format("{0:00}", time);
     }
@@ -25,8 +23,16 @@ public class Timer : MonoBehaviour
     private void FixedUpdate()
     {
         time -= Time.deltaTime;
-        if(time < 0)
+        if(time <= 0)
         {
+            if(player == 1)
+            {
+                GameManager.GM.player1.Reset();
+            }
+            if (player == 2)
+            {
+                GameManager.GM.player2.Reset();
+            }
             Reset();
         }
         stgTimer = string.Format("{0:00}", time);

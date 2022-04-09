@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public GameData_SO gameData;
     public HUD hud;
 
+    GameObject[] players;
     public Player player1;
     public Player player2;
 
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
 
         hud.UpdateScore(player1.data.score, player2.data.score);
         gameData.OnUpdateHUD.AddListener(UpdateHUD);
+        gameData.OnPlayerEnter.AddListener(Revisa);
     }
     public void Update()
     {
@@ -52,5 +54,22 @@ public class GameManager : MonoBehaviour
     public void UpdateHUD()
     {
         hud.UpdateScore(player1.data.score, player2.data.score);
+    }
+
+    public void Revisa()
+    {
+        hud.panel.SetActive(true);
+        players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject gameObjects in players)
+        {
+            if (((int)gameObjects.GetComponent<Player>().numPlayer) == 1)
+            {
+                player1 = gameObjects.GetComponent<Player>();
+            }
+            else if (((int)gameObjects.GetComponent<Player>().numPlayer) == 2)
+            {
+                player2 = gameObjects.GetComponent<Player>();
+            }
+        }
     }
 }

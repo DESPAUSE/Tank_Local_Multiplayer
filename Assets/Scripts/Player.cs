@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
 namespace PlayerUnity
 {
@@ -120,13 +121,12 @@ public class Player : MonoBehaviour, IPunObservable
             //Instancia fumaça no modelo e não no centro do objeto que nao entendi onde está
             fumacaOld = Instantiate(fumaca, this.gameObject.GetComponentInChildren<LODGroup>().transform);
             damaged = true;
-            GameManager.GM.hud.DeathCountdown(((int)numPlayer));
 
             FindObjectOfType<AudioManager>().Stop("TankIdle" + (int)numPlayer);
             FindObjectOfType<AudioManager>().Stop("TankMoving" + (int)numPlayer);
             FindObjectOfType<AudioManager>().Play("Fire" + (int)numPlayer);
             FindObjectOfType<AudioManager>().Play("Shutdown");
-        }
+            }
     }
 
     void Movement()
@@ -152,9 +152,9 @@ public class Player : MonoBehaviour, IPunObservable
     void Fire()
     {
             var instance = PhotonNetwork.Instantiate("Tiro", ponta.transform.position, ponta.transform.rotation);
-        instance.GetComponent<Shot>().player = this;
-        instance.GetComponent<Rigidbody>().AddForce(ponta.transform.forward * 6000);
-        FindObjectOfType<AudioManager>().Play("TankFire" + (int)numPlayer);
+            instance.GetComponent<Shot>().player = this;
+            instance.GetComponent<Rigidbody>().AddForce(ponta.transform.forward * 6000);
+            FindObjectOfType<AudioManager>().Play("TankFire" + (int)numPlayer);
     }
 
     public void AddPoints(int value)
