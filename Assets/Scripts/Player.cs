@@ -19,6 +19,7 @@ public class Player : MonoBehaviour, IPunObservable
     public PlayerData_SO data;
     public EnumPlayer numPlayer;
     PhotonView view;
+        public Canvas myCanvas;
 
     public float force = 10;
     public float torque = 10;
@@ -62,6 +63,7 @@ public class Player : MonoBehaviour, IPunObservable
             {
                 myCam.SetActive(true);
                 Destroy(Camera.main);
+                myCanvas.gameObject.SetActive(false);
             }
             else
             {
