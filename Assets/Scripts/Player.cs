@@ -73,7 +73,7 @@ public class Player : MonoBehaviour, IPunObservable
 
             if (!damaged)
         {
-            if(Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+            if(Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
             {
                 FindObjectOfType<AudioManager>().Stop("TankIdle");
                 if(!isMoving && isPlaying)
