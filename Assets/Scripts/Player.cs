@@ -68,31 +68,31 @@ public class Player : MonoBehaviour, IPunObservable
             else
             {
                 myCam.SetActive(false);
-
+                return;
             }
 
             if (!damaged)
         {
-            if(Input.GetButton("Horizontal" + (int)numPlayer) || Input.GetButton("Vertical" + (int)numPlayer))
+            if(Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
             {
-                FindObjectOfType<AudioManager>().Stop("TankIdle" + (int)numPlayer);
+                FindObjectOfType<AudioManager>().Stop("TankIdle");
                 if(!isMoving && isPlaying)
                 {
                     isPlaying = false;
                     isMoving = true;
                 }
             }
-            else if (Input.GetButtonUp("Horizontal" + (int)numPlayer) || Input.GetButtonUp("Vertical" + (int)numPlayer))
+            else if (Input.GetButtonUp("Horizontal") || Input.GetButtonUp("Vertical"))
             {
                 isMoving = false;
                 isPlaying = false;
-                FindObjectOfType<AudioManager>().Stop("TankMoving" + (int)numPlayer);
+                FindObjectOfType<AudioManager>().Stop("TankMoving");
             }
 
-            hor = Input.GetAxis("Horizontal" + (int)numPlayer);
-            ver = Input.GetAxis("Vertical" + (int)numPlayer);
+            hor = Input.GetAxis("Horizontal");
+            ver = Input.GetAxis("Vertical");
 
-                if (Input.GetButtonDown("Fire" + (int)numPlayer))
+                if (Input.GetButtonDown("Fire"))
                     view.RPC("Fire", RpcTarget.All);
         }
     }
@@ -154,7 +154,7 @@ public class Player : MonoBehaviour, IPunObservable
     [PunRPC]
     void Fire()
     {
-            var instance = PhotonNetwork.Instantiate("Tiro", ponta.transform.position, ponta.transform.rotation);
+            var instance = Instantiate(Shot, ponta.transform.position, ponta.transform.rotation);
             instance.GetComponent<Shot>().player = this;
             instance.GetComponent<Rigidbody>().AddForce(ponta.transform.forward * 6000);
             FindObjectOfType<AudioManager>().Play("TankFire" + (int)numPlayer);

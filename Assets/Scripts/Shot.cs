@@ -18,7 +18,6 @@ public class Shot : MonoBehaviour
                 Destroy(vfx, 3f);
                 Destroy(this.gameObject, 0);
                 player.AddPoints(1);
-                Destroy(collision.gameObject, 1.5f);
 
                 collision.gameObject.GetComponent<Player>().Morri();
             }
