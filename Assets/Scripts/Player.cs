@@ -91,9 +91,9 @@ public class Player : MonoBehaviour, IPunObservable
 
             hor = Input.GetAxis("Horizontal" + (int)numPlayer);
             ver = Input.GetAxis("Vertical" + (int)numPlayer);
-            
-            if (Input.GetButtonDown("Fire" + (int)numPlayer))
-                Fire();
+
+                if (Input.GetButtonDown("Fire" + (int)numPlayer))
+                    view.RPC("Fire", RpcTarget.All);
         }
     }
 
@@ -151,6 +151,7 @@ public class Player : MonoBehaviour, IPunObservable
 
     }
 
+    [PunRPC]
     void Fire()
     {
             var instance = PhotonNetwork.Instantiate("Tiro", ponta.transform.position, ponta.transform.rotation);
