@@ -314,6 +314,7 @@ MonoBehaviour:
   myCanvas: {fileID: 8217846438115334407}
   force: 10
   torque: 5
+  myHealth: 10
   fumaca: {fileID: 8253932482278582595, guid: b045c2dd2cc65ff49a555f05267c6e8d, type: 3}
   fumacaOld: {fileID: 0}
   Shot: {fileID: 6432318271186814199, guid: f09cd86f5f13e474882f8fa60e4ca86e, type: 3}
@@ -420,7 +421,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7457854267381118666}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7949017405873602926}

@@ -16,14 +16,14 @@ public class PlayerHud : MonoBehaviourPunCallbacks
 
     }
 
-    public void CallSetHUD(string nick)
+    public void CallSetHUD()
     {
-        view.RPC("SetHUD", RpcTarget.All, nick);
+        view.RPC("SetHUD", RpcTarget.All);
     }
 
     [PunRPC]
-    public void SetHUD(string nick) 
+    public void SetHUD() 
     {
-        textNick.text = nick;
+        textNick.text = view.Owner.NickName;
     }
 }
