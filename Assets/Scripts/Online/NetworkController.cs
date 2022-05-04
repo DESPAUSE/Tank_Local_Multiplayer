@@ -124,11 +124,6 @@ public class NetworkController : MonoBehaviourPunCallbacks
             gameData.OnPlayerEnter.Invoke();
             p2On = true;
         }
-
-        foreach (PlayerUnity.Player player in FindObjectsOfType<PlayerUnity.Player>())
-        {
-            player.GetComponent<PlayerHud>().CallSetHUD();
-        }
         gameData.OnPlayerEnter.Invoke();
     }
 

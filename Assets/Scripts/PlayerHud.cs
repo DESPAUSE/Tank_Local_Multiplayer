@@ -13,7 +13,7 @@ public class PlayerHud : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-
+        textNick.text = view.Owner.NickName;
     }
 
     public void CallSetHUD()
