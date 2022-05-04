@@ -8,14 +8,17 @@ using TMPro;
 
 public class PlayerHud : MonoBehaviourPunCallbacks
 {
-    string nickString;
     public TMP_Text textNick;
     public PhotonView view;
 
-    public void SetHud() 
+    private void Start()
     {
-        nickString = view.Owner.NickName;
-        textNick.text = nickString;
-        view = this.gameObject.GetComponent<PhotonView>();
+        view = GetComponent<PhotonView>();   
+    }
+
+    [PunRPC]
+    public void SetHud(string nick) 
+    {
+        textNick.text = nick;
     }
 }

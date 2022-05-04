@@ -113,7 +113,7 @@ public class NetworkController : MonoBehaviourPunCallbacks
             PhotonNetwork.Instantiate(player.name, Vector2.zero, Quaternion.identity);
             gameData.OnPlayerEnter.Invoke();
             PlayerHud minhaHud = new PlayerHud();
-            minhaHud.SetHud();
+            minhaHud.view.RPC("SetHUD", RpcTarget.All, PlayerPrefs.GetString("user"));
             p1On = true;
         }
         else if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
@@ -121,7 +121,7 @@ public class NetworkController : MonoBehaviourPunCallbacks
             PhotonNetwork.Instantiate(player2.name, Vector2.zero, Quaternion.identity);
             gameData.OnPlayerEnter.Invoke();
             PlayerHud minhaHud = new PlayerHud();
-            minhaHud.SetHud();
+            minhaHud.view.RPC("SetHUD", RpcTarget.All, PlayerPrefs.GetString("user"));
             p2On = true;
         }
         gameData.OnPlayerEnter.Invoke();
