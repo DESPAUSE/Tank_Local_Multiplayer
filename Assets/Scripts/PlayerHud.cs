@@ -10,12 +10,12 @@ public class PlayerHud : MonoBehaviourPunCallbacks
 {
     string nickString;
     public TMP_Text textNick;
-    PhotonView view;
+    public PhotonView view;
 
     public void SetHud() 
     {
         nickString = view.Owner.NickName;
         textNick.text = nickString;
-        view = GetComponent<PhotonView>();
+        view = this.gameObject.GetComponent<PhotonView>();
     }
 }
