@@ -24,6 +24,8 @@ public class Player : MonoBehaviour, IPunObservable
     public float force = 10;
     public float torque = 10;
 
+        public float myHealth = 10;
+
     Rigidbody rb;
 
     float hor;
@@ -165,6 +167,12 @@ public class Player : MonoBehaviour, IPunObservable
         data.score += value;
         gameData.OnUpdateHUD.Invoke();
     }
+
+    public void SetHealth(Player player)
+    {
+            player.myHealth -= 1;
+    }
+
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
             /*if (stream.IsWriting)
