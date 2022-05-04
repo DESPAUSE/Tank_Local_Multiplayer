@@ -168,9 +168,9 @@ public class Player : MonoBehaviour, IPunObservable
         gameData.OnUpdateHUD.Invoke();
     }
 
-    public void SetHealth(Player player)
+    public void SetHealth()
     {
-            player.myHealth -= 1;
+            myHealth -= 1;
             Debug.Log(myHealth);
     }
 

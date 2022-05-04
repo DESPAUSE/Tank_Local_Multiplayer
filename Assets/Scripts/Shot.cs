@@ -18,9 +18,9 @@ public class Shot : MonoBehaviour
                 Destroy(vfx, 3f);
                 Destroy(this.gameObject, 0);
                 player.AddPoints(1);
-                player.SetHealth(collision.gameObject.GetComponent<Player>());
+                collision.gameObject.GetComponent<Player>().SetHealth();
 
-                collision.gameObject.GetComponent<Player>().Morri();
+                //collision.gameObject.GetComponent<Player>().Morri();
             }
         }
         else if (collision.gameObject.tag == "Explodable")
