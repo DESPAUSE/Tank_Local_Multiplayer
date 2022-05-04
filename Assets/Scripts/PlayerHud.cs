@@ -22,7 +22,7 @@ public class PlayerHud : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void SetHud(string nick) 
+    public void SetHUD(string nick) 
     {
         textNick.text = nick;
     }

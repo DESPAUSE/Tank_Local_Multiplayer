@@ -116,7 +116,7 @@ public class NetworkController : MonoBehaviourPunCallbacks
             GameObject gPlayer = PhotonNetwork.Instantiate(player.name, spawnPoints[index].transform.position, Quaternion.identity);
             gameData.OnPlayerEnter.Invoke();
             PlayerHud minhaHud = gPlayer.GetComponent<PlayerHud>();
-            minhaHud.CallSetHUD(PlayerPrefs.GetString("user"));
+            minhaHud.CallSetHUD(PhotonNetwork.NickName);
             p1On = true;
         }
         else if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
