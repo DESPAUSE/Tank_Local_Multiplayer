@@ -16,7 +16,6 @@ public class PlayerHud : MonoBehaviourPunCallbacks
         view = GetComponent<PhotonView>();   
     }
 
-    [PunRPC]
     public void SetHud(string nick) 
     {
         textNick.text = nick;

@@ -113,19 +113,19 @@ public class NetworkController : MonoBehaviourPunCallbacks
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
         {
             int index = Random.Range(0, spawnPoints.Length);
-            PhotonNetwork.Instantiate(player.name, spawnPoints[index].transform.position, Quaternion.identity);
+            GameObject gPlayer = PhotonNetwork.Instantiate(player.name, spawnPoints[index].transform.position, Quaternion.identity);
             gameData.OnPlayerEnter.Invoke();
-            PlayerHud minhaHud = new PlayerHud();
-            minhaHud.view.RPC("SetHUD", RpcTarget.All, PlayerPrefs.GetString("user"));
+            PlayerHud minhaHud = gPlayer.GetComponent<PlayerHud>();
+            minhaHud.SetHud(PlayerPrefs.GetString("user"));
             p1On = true;
         }
         else if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
             int index = Random.Range(0, spawnPoints.Length);
-            PhotonNetwork.Instantiate(player2.name, spawnPoints[index].transform.position, Quaternion.identity);
+            GameObject gPlayer = PhotonNetwork.Instantiate(player2.name, spawnPoints[index].transform.position, Quaternion.identity);
             gameData.OnPlayerEnter.Invoke();
-            PlayerHud minhaHud = new PlayerHud();
-            minhaHud.view.RPC("SetHUD", RpcTarget.All, PlayerPrefs.GetString("user"));
+            PlayerHud minhaHud = gPlayer.GetComponent<PlayerHud>();
+            minhaHud.SetHud(PlayerPrefs.GetString("user"));
             p2On = true;
         }
         gameData.OnPlayerEnter.Invoke();
