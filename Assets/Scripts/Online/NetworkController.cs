@@ -13,6 +13,8 @@ public class NetworkController : MonoBehaviourPunCallbacks
     public GameObject player,
         player2;
 
+    public GameObject[] spawnPoints;
+
     public bool p1On, 
         p2On;
 
@@ -110,7 +112,8 @@ public class NetworkController : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
         {
-            PhotonNetwork.Instantiate(player.name, Vector2.zero, Quaternion.identity);
+            int index = Random.Range(0, spawnPoints.Length);
+            PhotonNetwork.Instantiate(player.name, spawnPoints[index].transform.position, Quaternion.identity);
             gameData.OnPlayerEnter.Invoke();
             PlayerHud minhaHud = new PlayerHud();
             minhaHud.SetHud();
@@ -118,7 +121,8 @@ public class NetworkController : MonoBehaviourPunCallbacks
         }
         else if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
-            PhotonNetwork.Instantiate(player2.name, Vector2.zero, Quaternion.identity);
+            int index = Random.Range(0, spawnPoints.Length);
+            PhotonNetwork.Instantiate(player2.name, spawnPoints[index].transform.position, Quaternion.identity);
             gameData.OnPlayerEnter.Invoke();
             PlayerHud minhaHud = new PlayerHud();
             minhaHud.SetHud();
