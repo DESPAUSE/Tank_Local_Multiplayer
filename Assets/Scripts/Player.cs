@@ -171,6 +171,7 @@ public class Player : MonoBehaviour, IPunObservable
     public void SetHealth(Player player)
     {
             player.myHealth -= 1;
+            Debug.Log(myHealth);
     }
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

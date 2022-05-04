@@ -876,6 +876,7 @@ MonoBehaviour:
   myCanvas: {fileID: 714350817}
   force: 10
   torque: 5
+  myHealth: 10
   fumaca: {fileID: 8253932482278582595, guid: b045c2dd2cc65ff49a555f05267c6e8d, type: 3}
   fumacaOld: {fileID: 0}
   Shot: {fileID: 6432318271186814199, guid: f09cd86f5f13e474882f8fa60e4ca86e, type: 3}
