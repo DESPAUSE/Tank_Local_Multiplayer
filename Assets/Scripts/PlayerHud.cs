@@ -13,7 +13,7 @@ public class PlayerHud : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        view = GetComponent<PhotonView>();   
+
     }
 
     public void CallSetHUD(string nick)
