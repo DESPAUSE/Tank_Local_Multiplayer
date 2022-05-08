@@ -148,4 +148,11 @@ public class NetworkController : MonoBehaviourPunCallbacks
     {
         Debug.LogWarning("OnCreateRoomFailed: " + message);
     }
+
+    public GameObject GetRandomSpawnPoint()
+    {
+        GameObject spawn;
+        spawn = spawnPoints[Random.Range(0, 4)];
+        return spawn;
+    }
 }

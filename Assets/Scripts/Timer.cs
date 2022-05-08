@@ -5,12 +5,13 @@ using PlayerUnity;
 public class Timer : MonoBehaviour
 {
     public int player;
+    public float timeToReset;
     float time;
     public string stgTimer;
 
     private void Start()
     {
-        time = 3;
+        time = timeToReset;
     }
 
     private void Reset()

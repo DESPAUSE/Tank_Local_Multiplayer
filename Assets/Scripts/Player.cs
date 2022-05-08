@@ -15,6 +15,7 @@ public enum EnumPlayer
 
 public class Player : MonoBehaviour, IPunObservable
 {
+    NetworkController networkController;
     public GameData_SO gameData;
     public PlayerData_SO data;
     public EnumPlayer numPlayer;
@@ -24,7 +25,7 @@ public class Player : MonoBehaviour, IPunObservable
     public float force = 10;
     public float torque = 10;
 
-        public float myHealth = 10;
+    public float myHealth = 10;
 
     Rigidbody rb;
 
@@ -52,6 +53,7 @@ public class Player : MonoBehaviour, IPunObservable
 
     private void Start()
     {
+        networkController = FindObjectOfType<NetworkController>();
         rb = GetComponent<Rigidbody>();
         startPos = transform.position;
         startRotation = transform.rotation;
@@ -64,11 +66,13 @@ public class Player : MonoBehaviour, IPunObservable
             if (view.IsMine)
             {
                 myCam.SetActive(true);
+                GameManager.GM.cameraInScene = myCam.GetComponent<Camera>();
                 Destroy(Camera.main);
                 myCanvas.gameObject.SetActive(false);
             }
             else
             {
+                myCanvas.transform.LookAt(GameManager.GM.cameraInScene.transform.position);
                 myCam.SetActive(false);
                 return;
             }
@@ -110,22 +114,24 @@ public class Player : MonoBehaviour, IPunObservable
 
     public void Reset()
     {
+        myHealth = 10;
         damaged = false;
         Destroy(fumacaOld);
         transform.rotation = startRotation;
-        transform.position = startPos;
+        transform.position = networkController.GetRandomSpawnPoint().transform.position;
         FindObjectOfType<AudioManager>().Stop("Fire" + (int)numPlayer);
         FindObjectOfType<AudioManager>().Play("Shutup");
     }
 
-    public void Morri()
+    public void Morri(Player player)
     {
         if (this.enabled == true)
         {
             //Instancia fumaça no modelo e não no centro do objeto que nao entendi onde está
             fumacaOld = Instantiate(fumaca, this.gameObject.GetComponentInChildren<LODGroup>().transform);
+                player.AddPoints(1);
             damaged = true;
-
+                StartCoroutine("MorreuCountdown");
             FindObjectOfType<AudioManager>().Stop("TankIdle" + (int)numPlayer);
             FindObjectOfType<AudioManager>().Stop("TankMoving" + (int)numPlayer);
             FindObjectOfType<AudioManager>().Play("Fire" + (int)numPlayer);
@@ -168,9 +174,13 @@ public class Player : MonoBehaviour, IPunObservable
         gameData.OnUpdateHUD.Invoke();
     }
 
-    public void SetHealth()
+    public void SetHealth(int value, Player player)
     {
-            myHealth -= 1;
+            myHealth -= value;
+            if(myHealth < 1)
+            {
+                Morri(player);
+            }
             Debug.Log(myHealth);
     }
 
@@ -185,6 +195,11 @@ public class Player : MonoBehaviour, IPunObservable
                 render.flipX = (bool)stream.ReceiveNext();
             }*/
             
+        }
+        IEnumerator MorreuCountdown()
+        {
+            yield return new WaitForSeconds(5f);
+            Reset();
         }
     }
 }

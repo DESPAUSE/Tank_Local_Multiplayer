@@ -17,8 +17,7 @@ public class Shot : MonoBehaviour
                 vfx = Instantiate(vfx, collision.contacts[0].point, Quaternion.identity);
                 Destroy(vfx, 3f);
                 Destroy(this.gameObject, 0);
-                player.AddPoints(1);
-                collision.gameObject.GetComponent<Player>().SetHealth();
+                collision.gameObject.GetComponent<Player>().SetHealth(2, player);
 
                 //collision.gameObject.GetComponent<Player>().Morri();
             }

@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
     public Player player1;
     public Player player2;
 
+    public Camera cameraInScene;
+
     public void Start()
     {
         FindObjectOfType<AudioManager>().Play("Ambience");
