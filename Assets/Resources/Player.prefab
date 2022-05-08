@@ -966,6 +966,7 @@ MonoBehaviour:
   gameData: {fileID: 11400000, guid: 818591a51f7c96d4b923dac55aa81796, type: 2}
   data: {fileID: 11400000, guid: 798a4e3ec32f6434496499df750a29e0, type: 2}
   numPlayer: 1
+  view: {fileID: 0}
   myCanvas: {fileID: 714350817}
   force: 10
   torque: 5

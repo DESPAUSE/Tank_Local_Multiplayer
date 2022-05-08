@@ -2,25 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UIElements;
 
 public class HUD : MonoBehaviour
 {
     public GameObject panel;
-    public TMP_Text txtP1points,
-        txtP2points;
+    public TMP_Text txtPoints;
+    public TMP_Text txtNick;
     public TMP_Text txtCount;
     public Timer death;
+
+    private void Start()
+    {
+
+    }
 
     private void Update()
     {
         txtCount.text = death.stgTimer;
     }
 
-    public void UpdateScore(int p1, int p2)
+    public void UpdateScore()
     {
-        txtP1points.text = p1.ToString();
-        txtP2points.text = p2.ToString();
+        txtPoints.text = GameManager.GM.thisPlayer.data.score.ToString();
+        txtNick.text = GameManager.GM.thisPlayer.view.Owner.NickName;
     }
 
     public void DeathCountdown(int playerNum)

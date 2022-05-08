@@ -26,17 +26,17 @@ public class GameManager : MonoBehaviour
     public GameData_SO gameData;
     public HUD hud;
 
+    public Player thisPlayer;
+    public int thisPlayerPoints = 0; //guarda os pontos do player da instancia atual (player jogando nesta tela)
+
     GameObject[] players;
-    public Player player1;
-    public Player player2;
+    public Player player1, player2, player3, player4;
 
     public Camera cameraInScene;
 
     public void Start()
     {
         FindObjectOfType<AudioManager>().Play("Ambience");
-
-        hud.UpdateScore(player1.data.score, player2.data.score);
         gameData.OnUpdateHUD.AddListener(UpdateHUD);
         gameData.OnPlayerEnter.AddListener(Revisa);
     }
@@ -49,13 +49,12 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
-        player1.Reset();
-        player2.Reset();
+        thisPlayer.Reset();
     }
 
     public void UpdateHUD()
     {
-        hud.UpdateScore(player1.data.score, player2.data.score);
+        hud.UpdateScore();
     }
 
     public void Revisa()
@@ -71,6 +70,14 @@ public class GameManager : MonoBehaviour
             else if (((int)gameObjects.GetComponent<Player>().numPlayer) == 2)
             {
                 player2 = gameObjects.GetComponent<Player>();
+            }
+            else if (((int)gameObjects.GetComponent<Player>().numPlayer) == 3)
+            {
+                player3 = gameObjects.GetComponent<Player>();
+            }
+            else if (((int)gameObjects.GetComponent<Player>().numPlayer) == 4)
+            {
+                player4 = gameObjects.GetComponent<Player>();
             }
         }
     }

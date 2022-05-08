@@ -11,6 +11,10 @@ public class HealthBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(player == null)
+        {
+            player = GameManager.GM.thisPlayer;
+        }
         rectTransform = HP.GetComponent<RectTransform>();
     }
 

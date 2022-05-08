@@ -10,7 +10,9 @@ namespace PlayerUnity
 public enum EnumPlayer
 {
     Player1 = 1,
-    Player2 = 2
+    Player2 = 2,
+    Player3 = 3,
+    Player4 = 4
 }
 
 public class Player : MonoBehaviour, IPunObservable
@@ -19,7 +21,7 @@ public class Player : MonoBehaviour, IPunObservable
     public GameData_SO gameData;
     public PlayerData_SO data;
     public EnumPlayer numPlayer;
-    PhotonView view;
+    public PhotonView view;
         public Canvas myCanvas;
 
     public float force = 10;
@@ -58,13 +60,18 @@ public class Player : MonoBehaviour, IPunObservable
         startPos = transform.position;
         startRotation = transform.rotation;
         view = GetComponent<PhotonView>();
-           
+            if (view.IsMine)
+            {
+                GameManager.GM.thisPlayer = this;
+                GameManager.GM.UpdateHUD();
+            }
     }
 
     private void Update()
     {
             if (view.IsMine)
             {
+                GameManager.GM.thisPlayerPoints = data.score;
                 myCam.SetActive(true);
                 GameManager.GM.cameraInScene = myCam.GetComponent<Camera>();
                 Destroy(Camera.main);

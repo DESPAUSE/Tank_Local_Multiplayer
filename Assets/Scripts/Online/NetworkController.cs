@@ -10,8 +10,10 @@ using UnityEngine.SceneManagement;
 public class NetworkController : MonoBehaviourPunCallbacks
 {
     public GameData_SO gameData;
-    public GameObject player,
-        player2;
+    public GameObject player1,
+        player2,
+        player3,
+        player4;
 
     public GameObject[] spawnPoints;
 
@@ -113,7 +115,7 @@ public class NetworkController : MonoBehaviourPunCallbacks
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
         {
             int index = Random.Range(0, spawnPoints.Length);
-            PhotonNetwork.Instantiate(player.name, spawnPoints[index].transform.position, Quaternion.identity);
+            PhotonNetwork.Instantiate(player1.name, spawnPoints[index].transform.position, Quaternion.identity);
             gameData.OnPlayerEnter.Invoke();
             p1On = true;
         }
@@ -121,6 +123,20 @@ public class NetworkController : MonoBehaviourPunCallbacks
         {
             int index = Random.Range(0, spawnPoints.Length);
             PhotonNetwork.Instantiate(player2.name, spawnPoints[index].transform.position, Quaternion.identity);
+            gameData.OnPlayerEnter.Invoke();
+            p2On = true;
+        }
+        else if (PhotonNetwork.CurrentRoom.PlayerCount == 3)
+        {
+            int index = Random.Range(0, spawnPoints.Length);
+            PhotonNetwork.Instantiate(player3.name, spawnPoints[index].transform.position, Quaternion.identity);
+            gameData.OnPlayerEnter.Invoke();
+            p2On = true;
+        }
+        else if (PhotonNetwork.CurrentRoom.PlayerCount == 4)
+        {
+            int index = Random.Range(0, spawnPoints.Length);
+            PhotonNetwork.Instantiate(player4.name, spawnPoints[index].transform.position, Quaternion.identity);
             gameData.OnPlayerEnter.Invoke();
             p2On = true;
         }
