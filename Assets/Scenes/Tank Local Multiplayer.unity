@@ -6605,10 +6605,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: 818591a51f7c96d4b923dac55aa81796, type: 2}
-  player1: {fileID: 0}
+  player1: {fileID: 4637784560613577487, guid: 68d499a12bc680542b0e167f938827d9, type: 3}
   player2: {fileID: 6744094405071070981, guid: cd4652560b5cae94c900f46de734bc16, type: 3}
-  player3: {fileID: 0}
-  player4: {fileID: 0}
+  player3: {fileID: 8052770093581347830, guid: 841d4ae814a29d54db7a21ab6a65099f, type: 3}
+  player4: {fileID: 3255729617490315394, guid: fbb68ff9a9be1664691531bdec86ead1, type: 3}
   spawnPoints:
   - {fileID: 105884488}
   - {fileID: 1365811255}
